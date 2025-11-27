@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from model_utils import predict_insect
 import os
+import gc
 
 app = Flask(__name__)
 
@@ -25,6 +26,9 @@ def predict():
         try:
             image_bytes = file.read()
             predictions = predict_insect(image_bytes)
+            
+            # Force garbage collection to free up memory immediately
+            gc.collect()
             
             # Mocking additional info since we don't have a real database
             # In a real app, you'd look up the label in a DB to get this info.
