@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insect Identification System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>InsectID <span class="highlight">AI</span></h1>
+            <p>Upload an image to identify insect species instantly.</p>
+        </header>
+
+        <main>
+            <div class="upload-section" id="upload-area">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="upload-content">
+                    <div class="icon-upload">📸</div>
+                    <h3>Click or Drag & Drop Image Here</h3>
+                    <p>Supports JPG, PNG, JPEG</p>
+                </div>
+                <img id="image-preview" class="hidden" alt="Preview">
+            </div>
+
+            <button id="predict-btn" class="btn-primary hidden">Identify Insect</button>
+            <button id="reset-btn" class="btn-secondary hidden">Upload New Image</button>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing image...</p>
+            </div>
+
+            <div id="result-section" class="hidden">
+                <div class="result-card">
+                    <h2>Identification Result</h2>
+                    <div class="prediction-highlight">
+                        <span id="top-prediction">Unknown</span>
+                        <span id="confidence-score" class="badge">0%</span>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <h4>Characteristics</h4>
+                            <p id="info-characteristics">--</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Risks to Crops</h4>
+                            <p id="info-risks">--</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Prevention</h4>
+                            <p id="info-prevention">--</p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Environmental Impact</h4>
+                            <p id="info-impact">--</p>
+                        </div>
+                    </div>
+
+                    <div class="other-predictions">
+                        <h4>Other Possibilities</h4>
+                        <ul id="other-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 InsectID System. Final Year Project.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
